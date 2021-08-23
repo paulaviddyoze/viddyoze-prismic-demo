@@ -1,11 +1,11 @@
-import css from "styled-jsx/css";
+import css from 'styled-jsx/css';
 
 export const footerStyles = css.global`
-  footer {
+  .footer {
     max-width: 700px;
     margin: 0 auto;
     color: #9a9a9a;
-    font-family: "Lato", sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 16px;
     font-style: italic;
     text-align: center;
@@ -17,7 +17,7 @@ export const footerStyles = css.global`
     margin-bottom: 0;
   }
 
-  footer a {
+  .footer a {
     font-weight: bold;
   }
 

@@ -1,7 +1,9 @@
 // import App from 'next/app'
-import { reset, globals } from 'styles'
+import { reset, globals } from 'styles';
+import Prismic from '@prismicio/client';
+import { Client } from 'utils/prismicHelpers';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, props }) {
   return (
     <>
       <style jsx global>
@@ -10,9 +12,18 @@ function MyApp({ Component, pageProps }) {
       <style jsx global>
         {globals}
       </style>
-      <Component {...pageProps} />
+      <Component {...pageProps} menu={props.menu} />
     </>
-  )
+  );
 }
 
-export default MyApp
+MyApp.getInitialProps = async appCtx => {
+  const menu = (await Client().getSingle('menu')) || {};
+  return {
+    props: {
+      menu: menu
+    }
+  };
+};
+
+export default MyApp;
