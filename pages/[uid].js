@@ -1,10 +1,15 @@
-import Prismic from '@prismicio/client';
+// import Prismic from '@prismicio/client';
 import { Client } from 'utils/prismicHelpers';
 import DefaultLayout from 'layouts';
 import PageContent from '../components/PageContent';
 import { queryRepeatableDocuments } from 'utils/queries';
+import { useRouter } from 'next/router';
 
 const Page = ({ menu, page }) => {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
   return (
     <DefaultLayout menu={menu}>
       <PageContent page={page} />
@@ -18,7 +23,6 @@ export async function getStaticProps({
   previewData = {}
 }) {
   const { ref } = previewData;
-  console.log(params);
   const page =
     (await Client().getByUID('page', params.uid, ref ? { ref } : null)) || {};
   return {

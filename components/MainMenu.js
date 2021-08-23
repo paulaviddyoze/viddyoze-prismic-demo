@@ -8,16 +8,6 @@ const MainMenu = ({ menu = [] }) => {
   return (
     <nav className="main-menu">
       <ul>
-        <li>
-          <NextLink href="/">
-            <a>Home</a>
-          </NextLink>
-        </li>
-        <li>
-          <NextLink href="/blog">
-            <a>Blog</a>
-          </NextLink>
-        </li>
         {menu?.length &&
           menu.map((menuLink, index) => (
             <li key={`menuLink-${index}`}>
@@ -29,6 +19,11 @@ const MainMenu = ({ menu = [] }) => {
               </NextLink>
             </li>
           ))}
+        <li>
+          <NextLink href="/blog">
+            <a>Blog</a>
+          </NextLink>
+        </li>
       </ul>
       <style jsx global>
         {menuStyles}
